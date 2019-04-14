@@ -1,9 +1,10 @@
 import numpy as np
 import pickle
+import argparse
 
 
 from config import CONFIG
-from Network import one_hot, Network
+from net.Network import one_hot, Network
 
 
 # load data
@@ -54,7 +55,16 @@ def main_mine():
 
 
 if __name__=='__main__':
-    main_mine()
+    p = argparse.ArgumentParser()
+    p.add_argument('network', help='The framework to use: \'Homemade\' or \'Keras\'')
+    args = p.parse_args()
+
+    if args.network == 'Homemade':
+        main_mine()
+    elif args.network == 'Keras':
+        main_keras()
+    else:
+        print('Unrecognized argument. Exiting..')
 
 
 
